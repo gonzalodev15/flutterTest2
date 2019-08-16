@@ -2,6 +2,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_secondtest/Model/Reminder.dart';
+import 'package:flutter_secondtest/Widgets/BackgroundImage.dart';
 import 'package:flutter_secondtest/db/dbHelper.dart';
 import 'package:intl/intl.dart';
 
@@ -59,97 +60,102 @@ class createReminderState extends State<createReminder> {
             ),
           ),
 
-          body: Padding(
-            padding: EdgeInsets.only(top: 15.0, left: 10.0, right: 10.0),
-            child: ListView(
-              children: <Widget>[
+          body: Stack(
+            children: <Widget>[
+              BackgroundImage(),
+              Padding(
+                padding: EdgeInsets.only(top: 15.0, left: 10.0, right: 10.0),
+                child: ListView(
+                  children: <Widget>[
 
-                Padding(
-                  padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
-                  child: TextField(
-                    controller: contentController,
-                    style: textStyle,
-                    onChanged: (value) {
-                      debugPrint('Something changed in Title Text Field');
-                      updateContent();
-                    },
-                    decoration: InputDecoration(
-                        labelText: 'Context',
-                        labelStyle: textStyle,
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5.0)
-                        )
-                    ),
-                  ),
-                ),
-
-                Padding(
-                  padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
-                  child: TextField(
-                    controller: hourController,
-                    style: textStyle,
-                    onChanged: (value) {
-                      debugPrint('Something changed in Description Text Field');
-                      updateHour();
-                    },
-                    decoration: InputDecoration(
-                        labelText: 'Description',
-                        labelStyle: textStyle,
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5.0)
-                        )
-                    ),
-                  ),
-                ),
-
-                // Fourth Element
-                Padding(
-                  padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: RaisedButton(
-                          color: Theme.of(context).primaryColorDark,
-                          textColor: Theme.of(context).primaryColorLight,
-                          child: Text(
-                            'Save',
-                            textScaleFactor: 1.5,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              debugPrint("Save button clicked");
-                              _save();
-                            });
-                          },
+                    Padding(
+                      padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+                      child: TextField(
+                        controller: contentController,
+                        style: textStyle,
+                        onChanged: (value) {
+                          debugPrint('Something changed in Title Text Field');
+                          updateContent();
+                        },
+                        decoration: InputDecoration(
+                            labelText: 'Context',
+                            labelStyle: textStyle,
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5.0)
+                            )
                         ),
                       ),
+                    ),
 
-                      Container(width: 5.0,),
-
-                      Expanded(
-                        child: RaisedButton(
-                          color: Theme.of(context).primaryColorDark,
-                          textColor: Theme.of(context).primaryColorLight,
-                          child: Text(
-                            'Delete',
-                            textScaleFactor: 1.5,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              debugPrint("Delete button clicked");
-                              _delete();
-                            });
-                          },
+                    Padding(
+                      padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+                      child: TextField(
+                        controller: hourController,
+                        style: textStyle,
+                        onChanged: (value) {
+                          debugPrint('Something changed in Description Text Field');
+                          updateHour();
+                        },
+                        decoration: InputDecoration(
+                            labelText: 'Description',
+                            labelStyle: textStyle,
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5.0)
+                            )
                         ),
                       ),
+                    ),
 
-                    ],
-                  ),
+                    // Fourth Element
+                    Padding(
+                      padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+                      child: Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: RaisedButton(
+                              color: Theme.of(context).primaryColorDark,
+                              textColor: Theme.of(context).primaryColorLight,
+                              child: Text(
+                                'Save',
+                                textScaleFactor: 1.5,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  debugPrint("Save button clicked");
+                                  _save();
+                                });
+                              },
+                            ),
+                          ),
+
+                          Container(width: 5.0,),
+
+                          Expanded(
+                            child: RaisedButton(
+                              color: Theme.of(context).primaryColorDark,
+                              textColor: Theme.of(context).primaryColorLight,
+                              child: Text(
+                                'Delete',
+                                textScaleFactor: 1.5,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  debugPrint("Delete button clicked");
+                                  _delete();
+                                });
+                              },
+                            ),
+                          ),
+
+                        ],
+                      ),
+                    ),
+
+                  ],
                 ),
-
-              ],
-            ),
-          ),
+              ),
+            ],
+          )
 
         ));
   }

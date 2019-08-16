@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secondtest/Model/Reminder.dart';
 import 'package:flutter_secondtest/Pages/createReminder.dart';
+import 'package:flutter_secondtest/Widgets/BackgroundImage.dart';
 import 'package:flutter_secondtest/db/dbHelper.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -20,10 +21,13 @@ class _RemindersPageState extends State<RemindersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Reminders'),
+
+      body: Stack(
+        children: <Widget>[
+          BackgroundImage(),
+          getReminderListView(),
+        ],
       ),
-      body: getReminderListView(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           debugPrint('FAB clicked');
