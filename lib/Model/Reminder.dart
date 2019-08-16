@@ -2,35 +2,44 @@ import 'dart:convert';
 
 Reminder reminderFromJson(String str) {
   final jsonData = json.decode(str);
-  return Reminder.fromJson(jsonData);
+  return Reminder.fromMapObject(jsonData);
 }
 
 class Reminder {
+
+  int _id;
   String content;
-  DateTime date;
+  String date;
   String hour;
 
 
-  Reminder({this.content, this.date, this.hour});
 
-  factory Reminder.fromJson(Map<String, dynamic> json){
-    return Reminder(
-      content : json['content'],
-      date : json['date'],
-      hour : json['hout'],
-    );
+  Reminder(this.content,this.date, this.hour);
+  Reminder.withId(this._id, this.content, this.date, this.hour);
+
+
+  int get id => _id;
+
+
+  Map<String, dynamic> toMap() {
+
+    var map = Map<String, dynamic>();
+    if (id != null) {
+      map['id'] = _id;
+    }
+    map['content'] = content;
+    map['date'] = date;
+    map['hour'] = hour;
+
+    return map;
   }
 
-  Map<String, dynamic> toJson() => {
-    'content': content,
-    'date': date,
-    'hour': hour,
+  // Extract a Note object from a Map object
+  Reminder.fromMapObject(Map<String, dynamic> map) {
+    this._id = map['id'];
+    this.content = map['content'];
+    this.date = map['date'];
+    this.hour = map['hour'];
 
-  };
-
-  Map<String, dynamic> toMap() => {
-    "content": content,
-    "date": date,
-    "hour": hour,
-  };
+  }
 }

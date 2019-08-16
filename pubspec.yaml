@@ -25,7 +25,9 @@ dependencies:
   rxdart:
   firebase_core:       # This dependency was added during initial configuration.
   firebase_analytics:
-
+  sqflite:
+  path_provider:
+  intl:
 dev_dependencies:
   flutter_test:
     sdk: flutter

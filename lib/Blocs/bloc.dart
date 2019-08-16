@@ -16,9 +16,6 @@ class Bloc extends Object with Validators implements BaseBloc{
 
   Stream <bool> get submitCheck => Observable.combineLatest2(email, password, (e, p) => true);
 
-  submit() {
-
-  }
 
   @override
   void dispose(){
